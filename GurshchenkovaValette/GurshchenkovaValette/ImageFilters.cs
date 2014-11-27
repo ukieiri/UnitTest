@@ -12,7 +12,6 @@ namespace GurshchenkovaValette
         //Rainbow Filter
         public static Bitmap RainbowFilter(Bitmap bmp)
         {
-
             Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
             int raz = bmp.Height / 4;
             for (int i = 0; i < bmp.Width; i++)

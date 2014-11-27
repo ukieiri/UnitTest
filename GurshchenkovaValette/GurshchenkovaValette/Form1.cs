@@ -32,13 +32,22 @@ namespace GurshchenkovaValette
             {
                 string path = op.FileName;
 
-                LoadImage(path, pbMainPicture);
-                LoadImage(path, pbMiamiFilter);
-                LoadImage(path, pbNightFilter);
-                LoadImage(path, pbHellFilter);
-                LoadImage(path, pbZenFilter);
-                LoadImage(path, pbBlackAndWhite);
-                LoadImage(path, pbSwapFilter);
+                Image img = Image.FromFile(path);
+
+                pbMainPicture.Load(path);
+
+                Bitmap temp = new Bitmap(pbMainPicture.Image,
+                   new Size(img.Width, img.Height));
+                pbMainPicture.Image = temp;
+                pbMainPicture.Width = img.Width;
+                pbMainPicture.Height = img.Height;
+
+                LoadPreviewImage(path, pbMiamiFilter);
+                LoadPreviewImage(path, pbNightFilter);
+                LoadPreviewImage(path, pbHellFilter);
+                LoadPreviewImage(path, pbZenFilter);
+                LoadPreviewImage(path, pbBlackAndWhite);
+                LoadPreviewImage(path, pbSwapFilter);
 
                 map = new Bitmap(pbMainPicture.Image);
                 Origin = pbMainPicture.Image;
@@ -46,9 +55,10 @@ namespace GurshchenkovaValette
                 
             }
         }
-        public void LoadImage(string path, PictureBox pictureBox) 
+        public void LoadPreviewImage(string path, PictureBox pictureBox) 
         {
-            pictureBox.Load(path);
+            pictureBox.Load(path);          
+
             Bitmap temp = new Bitmap(pictureBox.Image,
                new Size(pictureBox.Width, pictureBox.Height));
             pictureBox.Image = temp;
@@ -109,17 +119,47 @@ namespace GurshchenkovaValette
 
         private void btZenFilter_Click(object sender, EventArgs e)
         {
+            ApplyZenFilter();
+        }
+
+        private void pbZenFilter_Click(object sender, EventArgs e)
+        {
+            ApplyZenFilter();
+        }
+
+        private void ApplyZenFilter()
+        {
             pbMainPicture.Image = Origin;
             pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 10, 1, 1);
         }
 
         private void btBlackAndWhite_Click(object sender, EventArgs e)
         {
+            ApplyBlackAndWhite();
+        }
+
+        private void pbBlackAndWhite_Click(object sender, EventArgs e)
+        {
+            ApplyBlackAndWhite();
+        }
+
+        private void ApplyBlackAndWhite()
+        {
             pbMainPicture.Image = Origin;
             pbMainPicture.Image = ImageFilters.BlackWhite(new Bitmap(pbMainPicture.Image));
         }
 
         private void btSwapFilter_Click(object sender, EventArgs e)
+        {
+            ApplySwapFilter();
+        }
+
+        private void pbSwapFilter_Click(object sender, EventArgs e)
+        {
+            ApplySwapFilter();
+        }
+
+        private void ApplySwapFilter()
         {
             pbMainPicture.Image = Origin;
             pbMainPicture.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pbMainPicture.Image));
@@ -140,6 +180,12 @@ namespace GurshchenkovaValette
             };
             pbMainPicture.SizeMode = PictureBoxSizeMode.StretchImage;
         }
+
+        
+
+        
+
+        
 
         
 

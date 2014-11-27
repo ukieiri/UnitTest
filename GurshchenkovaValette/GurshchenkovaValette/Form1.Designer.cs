@@ -136,6 +136,7 @@
             this.pbZenFilter.Size = new System.Drawing.Size(127, 82);
             this.pbZenFilter.TabIndex = 8;
             this.pbZenFilter.TabStop = false;
+            this.pbZenFilter.Click += new System.EventHandler(this.pbZenFilter_Click);
             // 
             // pbBlackAndWhite
             // 
@@ -144,6 +145,7 @@
             this.pbBlackAndWhite.Size = new System.Drawing.Size(127, 82);
             this.pbBlackAndWhite.TabIndex = 9;
             this.pbBlackAndWhite.TabStop = false;
+            this.pbBlackAndWhite.Click += new System.EventHandler(this.pbBlackAndWhite_Click);
             // 
             // pbSwapFilter
             // 
@@ -152,6 +154,7 @@
             this.pbSwapFilter.Size = new System.Drawing.Size(127, 82);
             this.pbSwapFilter.TabIndex = 10;
             this.pbSwapFilter.TabStop = false;
+            this.pbSwapFilter.Click += new System.EventHandler(this.pbSwapFilter_Click);
             // 
             // btZenFilter
             // 
@@ -188,7 +191,7 @@
             this.lbImages.FormattingEnabled = true;
             this.lbImages.Location = new System.Drawing.Point(679, 13);
             this.lbImages.Name = "lbImages";
-            this.lbImages.Size = new System.Drawing.Size(192, 394);
+            this.lbImages.Size = new System.Drawing.Size(209, 394);
             this.lbImages.TabIndex = 14;
             // 
             // btSave
@@ -212,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 612);
+            this.ClientSize = new System.Drawing.Size(921, 612);
             this.Controls.Add(this.tbImageName);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.lbImages);
