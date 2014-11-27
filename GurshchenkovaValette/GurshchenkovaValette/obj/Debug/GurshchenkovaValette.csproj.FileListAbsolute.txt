@@ -7,3 +7,12 @@ C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\
 C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache
 C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.exe
 C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.pdb
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.exe.config
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.exe
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.pdb
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.exe
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.pdb
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csprojResolveAssemblyReference.cache
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Form1.resources
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Properties.Resources.resources
+C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache

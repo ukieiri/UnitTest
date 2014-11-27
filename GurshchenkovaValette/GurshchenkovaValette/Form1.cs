@@ -65,6 +65,7 @@ namespace GurshchenkovaValette
         {
             ApplyMiamiFilter();
         }
+
         private void pbMiamiFilter_Click(object sender, EventArgs e)
         {
             ApplyMiamiFilter();
@@ -77,11 +78,31 @@ namespace GurshchenkovaValette
 
         private void btNightFilter_Click(object sender, EventArgs e)
         {
+            ApplyNightFilter();
+        }
+
+        private void pbNightFilter_Click(object sender, EventArgs e)
+        {
+            ApplyNightFilter();
+        }
+
+        private void ApplyNightFilter()
+        {
             pbMainPicture.Image = Origin;
             pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 1, 1, 25);
         }
 
         private void btHellFilter_Click(object sender, EventArgs e)
+        {
+            ApplyHellFilter();
+        }
+
+        private void pbHellFilter_Click(object sender, EventArgs e)
+        {
+            ApplyHellFilter();
+        }
+
+        private void ApplyHellFilter()
         {
             pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 1, 10, 15);
         }
@@ -106,9 +127,23 @@ namespace GurshchenkovaValette
 
         private void btSave_Click(object sender, EventArgs e)
         {
+            SaveImage();
+        }
+        public void SaveImage()
+        {
+            pbMainPicture.SizeMode = PictureBoxSizeMode.AutoSize;
+            FolderBrowserDialog fl = new FolderBrowserDialog();
+            if (fl.ShowDialog() != DialogResult.Cancel)
+            {
 
+                pbMainPicture.Image.Save(fl.SelectedPath + @"\" + tbImageName.Text + @".png", System.Drawing.Imaging.ImageFormat.Png);
+            };
+            pbMainPicture.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        
+
+        
         
     }
 }

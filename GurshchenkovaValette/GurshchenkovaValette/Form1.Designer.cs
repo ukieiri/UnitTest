@@ -44,6 +44,7 @@
             this.btSwapFilter = new System.Windows.Forms.Button();
             this.lbImages = new System.Windows.Forms.ListBox();
             this.btSave = new System.Windows.Forms.Button();
+            this.tbImageName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMainPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMiamiFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNightFilter)).BeginInit();
@@ -87,6 +88,7 @@
             this.pbNightFilter.Size = new System.Drawing.Size(127, 82);
             this.pbNightFilter.TabIndex = 3;
             this.pbNightFilter.TabStop = false;
+            this.pbNightFilter.Click += new System.EventHandler(this.pbNightFilter_Click);
             // 
             // btNightFilter
             // 
@@ -105,6 +107,7 @@
             this.pbHellFilter.Size = new System.Drawing.Size(127, 82);
             this.pbHellFilter.TabIndex = 5;
             this.pbHellFilter.TabStop = false;
+            this.pbHellFilter.Click += new System.EventHandler(this.pbHellFilter_Click);
             // 
             // btHellFilter
             // 
@@ -198,11 +201,19 @@
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
+            // tbImageName
+            // 
+            this.tbImageName.Location = new System.Drawing.Point(212, 426);
+            this.tbImageName.Name = "tbImageName";
+            this.tbImageName.Size = new System.Drawing.Size(100, 20);
+            this.tbImageName.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 612);
+            this.Controls.Add(this.tbImageName);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.lbImages);
             this.Controls.Add(this.btSwapFilter);
@@ -229,6 +240,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBlackAndWhite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSwapFilter)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -250,6 +262,7 @@
         private System.Windows.Forms.Button btSwapFilter;
         private System.Windows.Forms.ListBox lbImages;
         private System.Windows.Forms.Button btSave;
+        private System.Windows.Forms.TextBox tbImageName;
     }
 }
 
