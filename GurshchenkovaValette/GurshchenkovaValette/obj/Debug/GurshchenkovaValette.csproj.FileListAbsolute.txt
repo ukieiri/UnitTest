@@ -1,0 +1,9 @@
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.exe.config
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.exe
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.pdb
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csprojResolveAssemblyReference.cache
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Form1.resources
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Properties.Resources.resources
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.exe
+C:\alena\SCHOOL\Test\FinalProject\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.pdb
