@@ -104,6 +104,11 @@ namespace GurshchenkovaValette
             pbMainPicture.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pbMainPicture.Image));
         }
 
+        private void btSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }
