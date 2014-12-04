@@ -16,3 +16,6 @@ C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\Gurshc
 C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Form1.resources
 C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Properties.Resources.resources
 C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Form1.resources
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Properties.Resources.resources
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache

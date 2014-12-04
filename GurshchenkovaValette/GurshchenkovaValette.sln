@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurshchenkovaValette", "GurshchenkovaValette\GurshchenkovaValette.csproj", "{6ED384F5-3FB3-4CE5-A98D-CA334549570C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{FBE43ECE-C552-4423-B563-54C57689AA62}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -17,6 +21,10 @@ Global
 		{6ED384F5-3FB3-4CE5-A98D-CA334549570C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ED384F5-3FB3-4CE5-A98D-CA334549570C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ED384F5-3FB3-4CE5-A98D-CA334549570C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBE43ECE-C552-4423-B563-54C57689AA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBE43ECE-C552-4423-B563-54C57689AA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBE43ECE-C552-4423-B563-54C57689AA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBE43ECE-C552-4423-B563-54C57689AA62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

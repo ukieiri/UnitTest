@@ -45,6 +45,8 @@
             this.lbImages = new System.Windows.Forms.ListBox();
             this.btSave = new System.Windows.Forms.Button();
             this.tbImageName = new System.Windows.Forms.TextBox();
+            this.btExport = new System.Windows.Forms.Button();
+            this.btImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbMainPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMiamiFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNightFilter)).BeginInit();
@@ -189,7 +191,7 @@
             // lbImages
             // 
             this.lbImages.FormattingEnabled = true;
-            this.lbImages.Location = new System.Drawing.Point(679, 13);
+            this.lbImages.Location = new System.Drawing.Point(722, 13);
             this.lbImages.Name = "lbImages";
             this.lbImages.Size = new System.Drawing.Size(209, 394);
             this.lbImages.TabIndex = 14;
@@ -211,11 +213,32 @@
             this.tbImageName.Size = new System.Drawing.Size(100, 20);
             this.tbImageName.TabIndex = 16;
             // 
+            // btExport
+            // 
+            this.btExport.Location = new System.Drawing.Point(641, 135);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(75, 23);
+            this.btExport.TabIndex = 17;
+            this.btExport.Text = "save >>";
+            this.btExport.UseVisualStyleBackColor = true;
+            // 
+            // btImport
+            // 
+            this.btImport.Location = new System.Drawing.Point(641, 258);
+            this.btImport.Name = "btImport";
+            this.btImport.Size = new System.Drawing.Size(75, 23);
+            this.btImport.TabIndex = 18;
+            this.btImport.Text = "<< import";
+            this.btImport.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 612);
+            this.ClientSize = new System.Drawing.Size(1107, 612);
+            this.Controls.Add(this.btImport);
+            this.Controls.Add(this.btExport);
             this.Controls.Add(this.tbImageName);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.lbImages);
@@ -266,6 +289,8 @@
         private System.Windows.Forms.ListBox lbImages;
         private System.Windows.Forms.Button btSave;
         private System.Windows.Forms.TextBox tbImageName;
+        private System.Windows.Forms.Button btExport;
+        private System.Windows.Forms.Button btImport;
     }
 }
 
