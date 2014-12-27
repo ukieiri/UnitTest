@@ -19,3 +19,12 @@ C:\Users\Alena\Documents\Visual Studio 2012\Projects\GurshchenkovaValette\Gurshc
 C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Form1.resources
 C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Properties.Resources.resources
 C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.exe.config
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.exe
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.pdb
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.exe
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\bin\Debug\GurshchenkovaValette.pdb
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csprojResolveAssemblyReference.cache
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Form1.resources
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.Properties.Resources.resources
+C:\Users\AboveUsOnlySky\Documents\Visual Studio 2013\Projects\GurshchenkovaValette(1)\GurshchenkovaValette\GurshchenkovaValette\obj\Debug\GurshchenkovaValette.csproj.GenerateResource.Cache

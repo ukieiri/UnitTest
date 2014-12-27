@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace GurshchenkovaValette
 {
-    public interface IFileManipulation
+    public interface IFilenameManipulation
     {
         // return the files inside the selected folder
         String[] getFileNames();
@@ -32,10 +32,7 @@ namespace GurshchenkovaValette
         Boolean setFormat(String fileFormat);
         String getFormat();
 
-        // save the image at the selected folder with the selected name
-        Boolean save(Image img);
-
-        // open the selected image from the selected folder
-        Image openImage(String fileName);
+        // return the full path of the chosen file
+        String getFullPath();
     }
 }
