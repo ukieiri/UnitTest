@@ -8,11 +8,58 @@ namespace UnitTest
     [TestClass]
     public class UnitTest_filenameManipulation
     {
-        // all test methods will test this class. So we instanciate it once
-        IFilenameManipulation filenameManipulation = new FilenameManipulation();
+        IFilenameManipulation _filenameManipulation;
+        String _validFolder;
 
-        // We need a working folder with files for many methods.
-        String validFolder = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\images";
+        public UnitTest_filenameManipulation()
+        {
+            // all test methods will test this class. So we instanciate it once
+            _filenameManipulation = new FilenameManipulation();
+
+            // We need a working folder with files for many methods.
+            _validFolder = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\images";
+
+        }
+
+        private TestContext testContextInstance;
+
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+
+        #region Additional test attributes
+        //
+        // You can use the following additional attributes as you write your tests:
+        //
+        // Use ClassInitialize to run code before running the first test in the class
+        // [ClassInitialize()]
+        // public static void MyClassInitialize(TestContext testContext) { }
+        //
+        // Use ClassCleanup to run code after all tests in a class have run
+        // [ClassCleanup()]
+        // public static void MyClassCleanup() { }
+        //
+        // Use TestInitialize to run code before running each test 
+        // [TestInitialize()]
+        // public void MyTestInitialize() { }
+        //
+        // Use TestCleanup to run code after each test has run
+        // [TestCleanup()]
+        // public void MyTestCleanup() { }
+        //
+        #endregion
 
         [TestMethod] // control that the folder name's functions are correctly checked
         public void folderName()
@@ -20,19 +67,19 @@ namespace UnitTest
             Boolean result = true;
 
             // try to add an unexisting path
-            result = filenameManipulation.setFolder("Unexisting path");
+            result = _filenameManipulation.setFolder("Unexisting path");
             Assert.AreEqual(false, result);
-            Assert.AreEqual("", filenameManipulation.getFolder());
+            Assert.AreEqual("", _filenameManipulation.getFolder());
 
             // add an existing path
-            result = filenameManipulation.setFolder(validFolder);
+            result = _filenameManipulation.setFolder(_validFolder);
             Assert.AreEqual(true, result);
-            Assert.AreEqual(validFolder, filenameManipulation.getFolder());
+            Assert.AreEqual(_validFolder, _filenameManipulation.getFolder());
 
             // change to a non-existing path. The previous path should have been kept
-            result = filenameManipulation.setFolder("unexisting folder");
+            result = _filenameManipulation.setFolder("unexisting folder");
             Assert.AreEqual(false, result);
-            Assert.AreEqual(validFolder, filenameManipulation.getFolder());
+            Assert.AreEqual(_validFolder, _filenameManipulation.getFolder());
         }
 
         [TestMethod] // control the "get files" method
@@ -41,15 +88,15 @@ namespace UnitTest
             String[] results = null;
 
             // invalid folder
-            filenameManipulation.setFolder("invalid folder");
+            _filenameManipulation.setFolder("invalid folder");
 
-            results = filenameManipulation.getFileNames();
+            results = _filenameManipulation.getFileNames();
             Assert.AreEqual(null, results);
 
             // valid folder
-            filenameManipulation.setFolder(validFolder);
+            _filenameManipulation.setFolder(_validFolder);
 
-            results = filenameManipulation.getFileNames();
+            results = _filenameManipulation.getFileNames();
             Assert.AreNotEqual(null, results);
             Assert.AreEqual(3, results.Length);
 
@@ -66,19 +113,19 @@ namespace UnitTest
             String validName = "valid file name";
 
             // try to set an invalid file name
-            result = filenameManipulation.setFileName("/¦2");
+            result = _filenameManipulation.setFileName("/¦2");
             Assert.AreEqual(false, result);
-            Assert.AreEqual("new file", filenameManipulation.getFileName());
+            Assert.AreEqual("new file", _filenameManipulation.getFileName());
 
             // set a valid file name
-            result = filenameManipulation.setFileName(validName);
+            result = _filenameManipulation.setFileName(validName);
             Assert.AreEqual(true, result);
-            Assert.AreEqual(validName, filenameManipulation.getFileName());
+            Assert.AreEqual(validName, _filenameManipulation.getFileName());
 
             // set invalid name, previous name should stay
-            result = filenameManipulation.setFileName("cou/cou");
+            result = _filenameManipulation.setFileName("cou/cou");
             Assert.AreEqual(false, result);
-            Assert.AreEqual(validName, filenameManipulation.getFileName());
+            Assert.AreEqual(validName, _filenameManipulation.getFileName());
         }
 
         [TestMethod] // control the file token's methods
@@ -88,19 +135,19 @@ namespace UnitTest
             String validToken = " (filter) ";
 
             // try to set an invalid file token
-            result = filenameManipulation.setFileToken(" / ");
+            result = _filenameManipulation.setFileToken(" / ");
             Assert.AreEqual(false, result);
-            Assert.AreEqual(" - ", filenameManipulation.getFileToken());
+            Assert.AreEqual(" - ", _filenameManipulation.getFileToken());
 
             // set a valid file token
-            result = filenameManipulation.setFileToken(validToken);
+            result = _filenameManipulation.setFileToken(validToken);
             Assert.AreEqual(true, result);
-            Assert.AreEqual(validToken, filenameManipulation.getFileToken());
+            Assert.AreEqual(validToken, _filenameManipulation.getFileToken());
 
             // set invalid token, previous token should stay
-            result = filenameManipulation.setFileToken(" :filter: ");
+            result = _filenameManipulation.setFileToken(" :filter: ");
             Assert.AreEqual(false, result);
-            Assert.AreEqual(validToken, filenameManipulation.getFileToken());
+            Assert.AreEqual(validToken, _filenameManipulation.getFileToken());
         }
 
         [TestMethod] // control the file format's methods
@@ -110,19 +157,19 @@ namespace UnitTest
             String validFormat = ".jpeg";
 
             // try to set an invalid format
-            result = filenameManipulation.setFormat(".docx");
+            result = _filenameManipulation.setFormat(".docx");
             Assert.AreEqual(false, result);
-            Assert.AreEqual(".jpg", filenameManipulation.getFormat());
+            Assert.AreEqual(".jpg", _filenameManipulation.getFormat());
 
             // set a valid format
-            result = filenameManipulation.setFormat(validFormat);
+            result = _filenameManipulation.setFormat(validFormat);
             Assert.AreEqual(true, result);
-            Assert.AreEqual(validFormat, filenameManipulation.getFormat());
+            Assert.AreEqual(validFormat, _filenameManipulation.getFormat());
 
             // set invalid format, previous format should stay
-            result = filenameManipulation.setFormat(".xlsx");
+            result = _filenameManipulation.setFormat(".xlsx");
             Assert.AreEqual(false, result);
-            Assert.AreEqual(validFormat, filenameManipulation.getFormat());
+            Assert.AreEqual(validFormat, _filenameManipulation.getFormat());
         }
 
     } // end of class "UnitTest"

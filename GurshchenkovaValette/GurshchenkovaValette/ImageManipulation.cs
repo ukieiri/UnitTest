@@ -9,7 +9,7 @@ using System.Drawing.Imaging;
 
 namespace GurshchenkovaValette
 {
-    class ImageManipulation : IimageManipulation
+    public class ImageManipulation : IimageManipulation
     {
         IFilenameManipulation _filename;
 
@@ -40,13 +40,21 @@ namespace GurshchenkovaValette
         }
 
         // remove an image from the disc
-        public Boolean remove(String fileName)
+        public Boolean remove()
         {
-            return false;
+            try
+            {
+                File.Delete( _filename.getFullPath() );
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         // open an image from the disc
-        public Image openImage(String fileName)
+        public Image openImage()
         {
             // check the folder exists
             if (!Directory.Exists(_filename.getFolder()))

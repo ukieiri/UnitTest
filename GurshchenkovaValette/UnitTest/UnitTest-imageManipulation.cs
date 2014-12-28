@@ -2,6 +2,10 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using GurshchenkovaValette;
+using System.Drawing;
+using System.IO;
 
 namespace UnitTest
 {
@@ -11,11 +15,28 @@ namespace UnitTest
     [TestClass]
     public class UnitTest_imageManipulation
     {
+        IFilenameManipulation _goodFilename;
+        IFilenameManipulation _badFilename;
+        String _path;
+        IimageManipulation _imageGood;
+        IimageManipulation _imageBad;
+
         public UnitTest_imageManipulation()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            _path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\images";
+
+            // instanciation for successfull usage
+            _goodFilename = Substitute.For<IFilenameManipulation>();
+            _goodFilename.getFolder().Returns(_path);
+            _goodFilename.getFullPath().Returns(_path + "new image - no filter.jpg");
+            _goodFilename.getFolder().Returns(".jpg");
+
+            // instanciation for unsuccessful usage
+            _badFilename = Substitute.For<IFilenameManipulation>();
+            _badFilename.getFolder().Returns("unexisting path");
+
+            _imageGood = new ImageManipulation(_goodFilename);
+            _imageBad = new ImageManipulation(_badFilename);
         }
 
         private TestContext testContextInstance;
@@ -58,12 +79,23 @@ namespace UnitTest
         //
         #endregion
 
-        [TestMethod]
-        public void TestMethod1()
+        [TestMethod] // control the save and remove image methods
+        public void discManipulation()
         {
-            //
-            // TODO: Add test logic here
-            //
+            Boolean result = true;
+
+            // take an image to save and delete
+            Image img = Image.FromFile(_path + "\\a.jpg");
+
+            // save a good image : return true and new image added
+            result = _imageGood.save(img);
+            Assert.AreEqual(true, result);
+
+            String[] files = Directory.GetFiles(_goodFilename.getFolder());
+            Assert.AreEqual(4, files.Length);
+
+            // remove a good image : return true and old image deleted
+            result = _imageGood.remove();
         }
     }
 }
