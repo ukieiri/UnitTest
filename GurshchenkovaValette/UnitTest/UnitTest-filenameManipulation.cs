@@ -6,7 +6,7 @@ using System.Drawing;
 namespace UnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest_filenameManipulation
     {
         // all test methods will test this class. So we instanciate it once
         IFilenameManipulation filenameManipulation = new FilenameManipulation();
@@ -123,17 +123,6 @@ namespace UnitTest
             result = filenameManipulation.setFormat(".xlsx");
             Assert.AreEqual(false, result);
             Assert.AreEqual(validFormat, filenameManipulation.getFormat());
-        }
-
-        [TestMethod] // control the save image method
-        public void saveImage()
-        {
-            Boolean result = true;
-
-            // get an image to work with
-            Image img = Image.FromFile(validFolder + "\\" + "a.jpg");
-
-
         }
 
     } // end of class "UnitTest"
