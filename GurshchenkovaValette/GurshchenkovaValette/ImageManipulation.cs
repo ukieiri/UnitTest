@@ -35,8 +35,16 @@ namespace GurshchenkovaValette
                 format = ImageFormat.Jpeg;
 
             // save the image in the right place, at the right format
-            img.Save(path, format);
-            return true;
+            try
+            {
+                System.Diagnostics.Trace.WriteLine(path);
+                img.Save(path, format);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         // remove an image from the disc
@@ -56,17 +64,20 @@ namespace GurshchenkovaValette
         // open an image from the disc
         public Image openImage()
         {
-            // check the folder exists
-            if (!Directory.Exists(_filename.getFolder()))
-                return null;
-
-            // check if file exists
-            String filePath = _filename.getFolder() + "\\" + fileName;
-
+            // check the file exists
+            String filePath = _filename.getFullPath();
             if (!File.Exists(filePath))
                 return null;
 
-            return Image.FromFile(filePath);
+            try
+            {
+                Image img = Image.FromFile(filePath);
+                return img;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

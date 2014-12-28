@@ -17,9 +17,11 @@ namespace UnitTest
     {
         IFilenameManipulation _goodFilename;
         IFilenameManipulation _badFilename;
+        IFilenameManipulation _existingFilename;
         String _path;
         IimageManipulation _imageGood;
         IimageManipulation _imageBad;
+        IimageManipulation _imageExisting;
 
         public UnitTest_imageManipulation()
         {
@@ -28,15 +30,21 @@ namespace UnitTest
             // instanciation for successfull usage
             _goodFilename = Substitute.For<IFilenameManipulation>();
             _goodFilename.getFolder().Returns(_path);
-            _goodFilename.getFullPath().Returns(_path + "new image - no filter.jpg");
-            _goodFilename.getFolder().Returns(".jpg");
+            _goodFilename.getFullPath().Returns(_path + "\\new image - no filter.jpg");
+            _goodFilename.getFormat().Returns(".jpg");
 
             // instanciation for unsuccessful usage
             _badFilename = Substitute.For<IFilenameManipulation>();
             _badFilename.getFolder().Returns("unexisting path");
 
+            // instanciation for existing image
+            _existingFilename = Substitute.For<IFilenameManipulation>();
+            _existingFilename.getFolder().Returns(_path);
+            _existingFilename.getFullPath().Returns(_path + "\\a.jpg");
+
             _imageGood = new ImageManipulation(_goodFilename);
             _imageBad = new ImageManipulation(_badFilename);
+            _imageExisting = new ImageManipulation(_existingFilename);
         }
 
         private TestContext testContextInstance;
@@ -79,23 +87,70 @@ namespace UnitTest
         //
         #endregion
 
-        [TestMethod] // control the save and remove image methods
-        public void discManipulation()
+        [TestMethod] // control the save and remove image methods (behaviour if existing)
+        public void imageGood()
         {
-            Boolean result = true;
+            Boolean result;
+            String[] files;
 
             // take an image to save and delete
             Image img = Image.FromFile(_path + "\\a.jpg");
 
-            // save a good image : return true and new image added
+            // save in good folder : return true and new image added
             result = _imageGood.save(img);
             Assert.AreEqual(true, result);
 
-            String[] files = Directory.GetFiles(_goodFilename.getFolder());
+            files = Directory.GetFiles(_goodFilename.getFolder());
+            Assert.AreEqual(5, files.Length); // 5, because originally there are 3 pictures + 1 text file
+
+            // remove an existing image : return true and old image deleted
+            result = _imageGood.remove();
+            Assert.AreEqual(true, result);
+
+            files = Directory.GetFiles(_goodFilename.getFolder());
+            Assert.AreEqual(4, files.Length);
+        }
+
+        [TestMethod] // control the save and remove image methods (behaviour if non-existing)
+        public void imageBad()
+        {
+            Boolean result;
+            String[] files;
+
+            // take an image to save and delete
+            Image img = Image.FromFile(_path + "\\a.jpg");
+
+            // save in non-existing folder : return false and no image added
+            result = _imageBad.save(img);
+            Assert.AreEqual(false, result);
+
+            files = Directory.GetFiles(_goodFilename.getFolder());
             Assert.AreEqual(4, files.Length);
 
-            // remove a good image : return true and old image deleted
-            result = _imageGood.remove();
+            // remove a non-existing image : return false, no image removed
+            result = _imageBad.remove();
+            Assert.AreEqual(false, result);
+
+            files = Directory.GetFiles(_goodFilename.getFolder());
+            Assert.AreEqual(4, files.Length);
         }
-    }
-}
+
+        [TestMethod] // control the open image method
+        public void openImage()
+        {
+            Image img;
+
+            // open an existing image
+            img = _imageExisting.openImage();
+            Assert.AreNotEqual(null, img);
+
+            // open a non-existing image from a non-existing folder
+            img = _imageBad.openImage();
+            Assert.AreEqual(null, img);
+
+            // open a non-existing image from an existing folder
+            img = _imageGood.openImage();
+            Assert.AreEqual(null, img);
+        }
+    } // end of class
+} // end of namespace

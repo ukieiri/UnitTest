@@ -1,0 +1,6 @@
+﻿The images folder must be filled with three images named :
+a.jpg
+b.jpg
+c.jpg
+
+Plus a text file, which is there to check the file's filtering
