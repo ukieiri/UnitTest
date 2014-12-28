@@ -150,6 +150,28 @@ namespace UnitTest
             Assert.AreEqual(validToken, _filenameManipulation.getFileToken());
         }
 
+        [TestMethod] // control the file filter's methods
+        public void fileFilter()
+        {
+            Boolean result = true;
+            String validFilter = "night vision";
+
+            // try to set an invalid file token
+            result = _filenameManipulation.setFileFilter(" ^`|~ ");
+            Assert.AreEqual(false, result);
+            Assert.AreEqual("no filter", _filenameManipulation.getFileFilter());
+
+            // set a valid file token
+            result = _filenameManipulation.setFileFilter(validFilter);
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(validFilter, _filenameManipulation.getFileFilter());
+
+            // set invalid token, previous token should stay
+            result = _filenameManipulation.setFileFilter(" :filter: ");
+            Assert.AreEqual(false, result);
+            Assert.AreEqual(validFilter, _filenameManipulation.getFileFilter());
+        }
+
         [TestMethod] // control the file format's methods
         public void fileFormat()
         {
@@ -170,6 +192,21 @@ namespace UnitTest
             result = _filenameManipulation.setFormat(".xlsx");
             Assert.AreEqual(false, result);
             Assert.AreEqual(validFormat, _filenameManipulation.getFormat());
+        }
+
+        [TestMethod] // test the full path method
+        public void fullPath()
+        {
+            String result;
+
+            // no folder set
+            result = _filenameManipulation.getFullPath();
+            Assert.AreEqual(null, result);
+
+            // existing folder set
+            _filenameManipulation.setFolder(_validFolder);
+            result = _filenameManipulation.getFullPath();
+            Assert.AreEqual(_validFolder + "\\new file - no filter.jpg", result);
         }
 
     } // end of class "UnitTest"

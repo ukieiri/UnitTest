@@ -100,7 +100,7 @@ namespace GurshchenkovaValette
         }
         public String getFileFilter()
         {
-            return "";
+            return _fileFilter;
         }
 
         // set the format of the picture
