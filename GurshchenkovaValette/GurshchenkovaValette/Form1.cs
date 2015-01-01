@@ -36,11 +36,9 @@ namespace GurshchenkovaValette
 
                 pbMainPicture.Load(path);
 
-                Bitmap temp = new Bitmap(pbMainPicture.Image,
-                   new Size(img.Width, img.Height));
+                Bitmap temp = new Bitmap(pbMainPicture.Image);
                 pbMainPicture.Image = temp;
-                pbMainPicture.Width = img.Width;
-                pbMainPicture.Height = img.Height;
+                pbMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
 
                 LoadPreviewImage(path, pbMiamiFilter);
                 LoadPreviewImage(path, pbNightFilter);
@@ -52,23 +50,27 @@ namespace GurshchenkovaValette
                 map = new Bitmap(pbMainPicture.Image);
                 Origin = pbMainPicture.Image;
 
-                
+                string filename = path.Split(new char[] { '\\' }).Last();
+                tbImageName.Text = filename;
             }
         }
         public void LoadPreviewImage(string path, PictureBox pictureBox) 
         {
-            pictureBox.Load(path);          
-
-            Bitmap temp = new Bitmap(pictureBox.Image,
-               new Size(pictureBox.Width, pictureBox.Height));
+            pictureBox.Load(path);
+            Bitmap temp = new Bitmap(pictureBox.Image);
             pictureBox.Image = temp;
-            if (pictureBox.Name == "pbMiamiFilter") pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 10, 1);
-            if (pictureBox.Name == "pbNightFilter") pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 1, 25);
-            if (pictureBox.Name == "pbHellFilter") pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 10, 15);
-            if (pictureBox.Name == "pbZenFilter") pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 10, 1, 1);
-            if (pictureBox.Name == "pbBlackAndWhite") pictureBox.Image = ImageFilters.BlackWhite(new Bitmap(pictureBox.Image));
-            if (pictureBox.Name == "pbSwapFilter") pictureBox.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pictureBox.Image));
-
+            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            switch (pictureBox.Name)
+            {
+                case "pbMiamiFilter":
+                    pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 10, 1); break;
+                case "pbNightFilter": pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 1, 25); break;
+                case "pbHellFilter": pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 10, 15); break;
+                case "pbZenFilter": pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 10, 1, 1); break;
+                case "pbBlackAndWhite": pictureBox.Image = ImageFilters.BlackWhite(new Bitmap(pictureBox.Image)); break;
+                case "pbSwapFilter": pictureBox.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pictureBox.Image)); break;
+                default: break;
+            }          
         }
 
         private void btMiamiFilter_Click(object sender, EventArgs e)
@@ -171,14 +173,14 @@ namespace GurshchenkovaValette
         }
         public void SaveImage()
         {
-            pbMainPicture.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
             FolderBrowserDialog fl = new FolderBrowserDialog();
             if (fl.ShowDialog() != DialogResult.Cancel)
             {
 
                 pbMainPicture.Image.Save(fl.SelectedPath + @"\" + tbImageName.Text + @".png", System.Drawing.Imaging.ImageFormat.Png);
             };
-            pbMainPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         

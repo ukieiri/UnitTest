@@ -47,6 +47,7 @@
             this.tbImageName = new System.Windows.Forms.TextBox();
             this.btExport = new System.Windows.Forms.Button();
             this.btImport = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbMainPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMiamiFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNightFilter)).BeginInit();
@@ -58,6 +59,7 @@
             // 
             // pbMainPicture
             // 
+            this.pbMainPicture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbMainPicture.Location = new System.Drawing.Point(13, 13);
             this.pbMainPicture.Name = "pbMainPicture";
             this.pbMainPicture.Size = new System.Drawing.Size(622, 394);
@@ -66,6 +68,7 @@
             // 
             // pbMiamiFilter
             // 
+            this.pbMiamiFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbMiamiFilter.Location = new System.Drawing.Point(13, 465);
             this.pbMiamiFilter.Name = "pbMiamiFilter";
             this.pbMiamiFilter.Size = new System.Drawing.Size(120, 82);
@@ -85,6 +88,7 @@
             // 
             // pbNightFilter
             // 
+            this.pbNightFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbNightFilter.Location = new System.Drawing.Point(157, 465);
             this.pbNightFilter.Name = "pbNightFilter";
             this.pbNightFilter.Size = new System.Drawing.Size(127, 82);
@@ -104,6 +108,7 @@
             // 
             // pbHellFilter
             // 
+            this.pbHellFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbHellFilter.Location = new System.Drawing.Point(308, 465);
             this.pbHellFilter.Name = "pbHellFilter";
             this.pbHellFilter.Size = new System.Drawing.Size(127, 82);
@@ -133,6 +138,7 @@
             // 
             // pbZenFilter
             // 
+            this.pbZenFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbZenFilter.Location = new System.Drawing.Point(460, 465);
             this.pbZenFilter.Name = "pbZenFilter";
             this.pbZenFilter.Size = new System.Drawing.Size(127, 82);
@@ -142,6 +148,7 @@
             // 
             // pbBlackAndWhite
             // 
+            this.pbBlackAndWhite.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbBlackAndWhite.Location = new System.Drawing.Point(611, 465);
             this.pbBlackAndWhite.Name = "pbBlackAndWhite";
             this.pbBlackAndWhite.Size = new System.Drawing.Size(127, 82);
@@ -151,6 +158,7 @@
             // 
             // pbSwapFilter
             // 
+            this.pbSwapFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbSwapFilter.Location = new System.Drawing.Point(761, 465);
             this.pbSwapFilter.Name = "pbSwapFilter";
             this.pbSwapFilter.Size = new System.Drawing.Size(127, 82);
@@ -208,9 +216,9 @@
             // 
             // tbImageName
             // 
-            this.tbImageName.Location = new System.Drawing.Point(212, 426);
+            this.tbImageName.Location = new System.Drawing.Point(273, 426);
             this.tbImageName.Name = "tbImageName";
-            this.tbImageName.Size = new System.Drawing.Size(100, 20);
+            this.tbImageName.Size = new System.Drawing.Size(362, 20);
             this.tbImageName.TabIndex = 16;
             // 
             // btExport
@@ -231,12 +239,21 @@
             this.btImport.Text = "<< import";
             this.btImport.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(212, 429);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "File name:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 612);
             this.ClientSize = new System.Drawing.Size(1107, 612);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btImport);
             this.Controls.Add(this.btExport);
             this.Controls.Add(this.tbImageName);
@@ -291,6 +308,7 @@
         private System.Windows.Forms.TextBox tbImageName;
         private System.Windows.Forms.Button btExport;
         private System.Windows.Forms.Button btImport;
+        private System.Windows.Forms.Label label1;
     }
 }
 
