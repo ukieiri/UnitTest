@@ -45,9 +45,11 @@
             this.lbImages = new System.Windows.Forms.ListBox();
             this.btSave = new System.Windows.Forms.Button();
             this.tbImageName = new System.Windows.Forms.TextBox();
-            this.btExport = new System.Windows.Forms.Button();
             this.btImport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.pbOriginal = new System.Windows.Forms.PictureBox();
+            this.btOriginal = new System.Windows.Forms.Button();
+            this.bnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbMainPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMiamiFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNightFilter)).BeginInit();
@@ -55,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbZenFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlackAndWhite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSwapFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).BeginInit();
             this.SuspendLayout();
             // 
             // pbMainPicture
@@ -199,14 +202,14 @@
             // lbImages
             // 
             this.lbImages.FormattingEnabled = true;
-            this.lbImages.Location = new System.Drawing.Point(722, 13);
+            this.lbImages.Location = new System.Drawing.Point(819, 13);
             this.lbImages.Name = "lbImages";
-            this.lbImages.Size = new System.Drawing.Size(209, 394);
+            this.lbImages.Size = new System.Drawing.Size(220, 394);
             this.lbImages.TabIndex = 14;
             // 
             // btSave
             // 
-            this.btSave.Location = new System.Drawing.Point(109, 424);
+            this.btSave.Location = new System.Drawing.Point(560, 426);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(75, 23);
             this.btSave.TabIndex = 15;
@@ -216,46 +219,70 @@
             // 
             // tbImageName
             // 
-            this.tbImageName.Location = new System.Drawing.Point(273, 426);
+            this.tbImageName.Location = new System.Drawing.Point(296, 426);
             this.tbImageName.Name = "tbImageName";
-            this.tbImageName.Size = new System.Drawing.Size(362, 20);
+            this.tbImageName.Size = new System.Drawing.Size(243, 20);
             this.tbImageName.TabIndex = 16;
-            // 
-            // btExport
-            // 
-            this.btExport.Location = new System.Drawing.Point(641, 135);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(75, 23);
-            this.btExport.TabIndex = 17;
-            this.btExport.Text = "save >>";
-            this.btExport.UseVisualStyleBackColor = true;
             // 
             // btImport
             // 
-            this.btImport.Location = new System.Drawing.Point(641, 258);
+            this.btImport.Location = new System.Drawing.Point(671, 196);
             this.btImport.Name = "btImport";
-            this.btImport.Size = new System.Drawing.Size(75, 23);
+            this.btImport.Size = new System.Drawing.Size(127, 23);
             this.btImport.TabIndex = 18;
             this.btImport.Text = "<< import";
             this.btImport.UseVisualStyleBackColor = true;
+            this.btImport.Click += new System.EventHandler(this.btImport_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(212, 429);
+            this.label1.Location = new System.Drawing.Point(226, 429);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 20;
             this.label1.Text = "File name:";
+            // 
+            // pbOriginal
+            // 
+            this.pbOriginal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbOriginal.Location = new System.Drawing.Point(912, 465);
+            this.pbOriginal.Name = "pbOriginal";
+            this.pbOriginal.Size = new System.Drawing.Size(127, 82);
+            this.pbOriginal.TabIndex = 21;
+            this.pbOriginal.TabStop = false;
+            this.pbOriginal.Click += new System.EventHandler(this.pbOriginal_Click);
+            // 
+            // btOriginal
+            // 
+            this.btOriginal.Location = new System.Drawing.Point(912, 554);
+            this.btOriginal.Name = "btOriginal";
+            this.btOriginal.Size = new System.Drawing.Size(127, 23);
+            this.btOriginal.TabIndex = 22;
+            this.btOriginal.Text = "Original";
+            this.btOriginal.UseVisualStyleBackColor = true;
+            this.btOriginal.Click += new System.EventHandler(this.btOriginal_Click);
+            // 
+            // bnDelete
+            // 
+            this.bnDelete.Location = new System.Drawing.Point(103, 426);
+            this.bnDelete.Name = "bnDelete";
+            this.bnDelete.Size = new System.Drawing.Size(103, 23);
+            this.bnDelete.TabIndex = 23;
+            this.bnDelete.Text = "Delete image";
+            this.bnDelete.UseVisualStyleBackColor = true;
+            this.bnDelete.Click += new System.EventHandler(this.bnDelete_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 612);
+            this.Controls.Add(this.bnDelete);
+            this.Controls.Add(this.btOriginal);
+            this.Controls.Add(this.pbOriginal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btImport);
-            this.Controls.Add(this.btExport);
             this.Controls.Add(this.tbImageName);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.lbImages);
@@ -282,6 +309,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbZenFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlackAndWhite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSwapFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,9 +334,11 @@
         private System.Windows.Forms.ListBox lbImages;
         private System.Windows.Forms.Button btSave;
         private System.Windows.Forms.TextBox tbImageName;
-        private System.Windows.Forms.Button btExport;
         private System.Windows.Forms.Button btImport;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pbOriginal;
+        private System.Windows.Forms.Button btOriginal;
+        private System.Windows.Forms.Button bnDelete;
     }
 }
 

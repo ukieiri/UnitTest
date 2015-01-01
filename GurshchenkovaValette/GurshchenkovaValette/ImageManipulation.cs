@@ -21,6 +21,12 @@ namespace GurshchenkovaValette
         // save an image on the disc
         public Boolean save(Image img)
         {
+            string fileName = _filename.getFileName();
+            string extension = fileName.Split(new char[] { '.' }).Last();
+            fileName = fileName.Replace("." + extension, "");
+            _filename.setFileName(fileName);
+            _filename.setFormat("." + extension);
+
             // get the path if exists
             String path = _filename.getFullPath();
             if (path == null)
@@ -51,8 +57,13 @@ namespace GurshchenkovaValette
         public Boolean remove()
         {
             try
-            {
-                File.Delete( _filename.getFullPath() );
+            {                
+                string fileName = _filename.getFileName();
+                string extension = fileName.Split(new char[] { '.' }).Last();
+                fileName = fileName.Replace("." + extension, "");
+                _filename.setFileName(fileName);
+                _filename.setFormat("." + extension);
+                File.Delete(_filename.getFullPath());
                 return true;
             }
             catch (Exception)

@@ -42,7 +42,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="NSubstitute">
-      <HintPath>..\..\..\GurshchenkovaValette(1)\GurshchenkovaValette\UnitTest\NSubstitute-1.4.3.0\lib\NET40\NSubstitute.dll</HintPath>
+      <HintPath>..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -81,7 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Settings.aiis" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="read me.txt" />
