@@ -46,43 +46,49 @@ namespace GurshchenkovaValette
             }
             op.Dispose();
         }
-        public void PopulatePictureBoxes(Image img, string path)
+        public bool PopulatePictureBoxes(Image img, string path)
         {
-            pbMainPicture.Image = img;
-            pbOriginal.Image = img;
+            try{
+                pbMainPicture.Image = img;
+                pbOriginal.Image = img;
 
-            //adjust the image
-            Bitmap temp = new Bitmap(pbMainPicture.Image);
-            pbMainPicture.Image = temp;
-            pbOriginal.Image = temp;
-            pbMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            pbOriginal.SizeMode = PictureBoxSizeMode.Zoom;
+                //adjust the image
+                Bitmap temp = new Bitmap(pbMainPicture.Image);
+                pbMainPicture.Image = temp;
+                pbOriginal.Image = temp;
+                pbMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
+                pbOriginal.SizeMode = PictureBoxSizeMode.Zoom;
 
-            //apply the filter and load preview images
-            LoadPreviewImage(img, pbMiamiFilter);
-            LoadPreviewImage(img, pbNightFilter);
-            LoadPreviewImage(img, pbHellFilter);
-            LoadPreviewImage(img, pbZenFilter);
-            LoadPreviewImage(img, pbBlackAndWhite);
-            LoadPreviewImage(img, pbSwapFilter);
+                //apply the filter and load preview images
+                LoadPreviewImage(img, pbMiamiFilter);
+                LoadPreviewImage(img, pbNightFilter);
+                LoadPreviewImage(img, pbHellFilter);
+                LoadPreviewImage(img, pbZenFilter);
+                LoadPreviewImage(img, pbBlackAndWhite);
+                LoadPreviewImage(img, pbSwapFilter);
 
-            map = new Bitmap(pbMainPicture.Image);
-            Origin = pbMainPicture.Image;
-            //get the filename
-            string filename = path.Split(new char[] { '\\' }).Last();            
-            string extension = path.Split(new char[] { '.' }).Last();
-            picturename = filename.Replace("." + extension, "");
-            tbImageName.Text = picturename;
+                map = new Bitmap(pbMainPicture.Image);
+                Origin = pbMainPicture.Image;
+                //get the filename
+                string filename = path.Split(new char[] { '\\' }).Last();
+                string extension = path.Split(new char[] { '.' }).Last();
+                picturename = filename.Replace("." + extension, "");
+                tbImageName.Text = picturename;
 
-            //get the foldername to populate the listbox
-            string foldername = path.Replace(filename, "");
-            fm.setFolder(foldername);
-            fm.setFileName(filename);
-            fm.setFileFilter(string.Empty);
-            fm.setFileToken(string.Empty);
-            fm.setFormat(string.Empty);
-            PopulateListBox();
-            EnableControles();
+                //get the foldername to populate the listbox
+                string foldername = path.Replace(filename, "");
+                fm.setFolder(foldername);
+                fm.setFileName(filename);
+                fm.setFileFilter(string.Empty);
+                fm.setFileToken(string.Empty);
+                fm.setFormat(string.Empty);
+                PopulateListBox();
+                EnableControles();
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
         public void PopulateListBox() {
             //populate the listbox with images from chosen folder
