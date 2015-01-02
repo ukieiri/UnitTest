@@ -56,7 +56,7 @@ namespace UnitTest
             // instanciation for existing but corrupted image
             _existingBadFilename = Substitute.For<IFilenameManipulation>();
             _existingBadFilename.getFolder().Returns(_path);
-            _existingBadFilename.getFullPath().Returns(_path + "\\test.txt");
+            _existingBadFilename.getFullPath().Returns(_path + "\\hi.txt");
 
 
             _imageGood = new ImageManipulation(_goodFilename);
