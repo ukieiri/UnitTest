@@ -70,7 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\sue.png" />
+    <Content Include="images\b.jpg" />
+    <Content Include="images\c.jpg" />
+    <Content Include="images\a.jpg" />
+    <Content Include="images\hi.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

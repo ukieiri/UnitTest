@@ -59,10 +59,10 @@ namespace GurshchenkovaValette
             try
             {                
                 string fileName = _filename.getFileName();
-                string extension = fileName.Split(new char[] { '.' }).Last();
-                fileName = fileName.Replace("." + extension, "");
+                string extension = _filename.getFormat();
+                fileName = fileName.Replace(extension, "");
                 _filename.setFileName(fileName);
-                _filename.setFormat("." + extension);
+                _filename.setFormat(extension);
                 File.Delete(_filename.getFullPath());
                 return true;
             }
@@ -82,7 +82,7 @@ namespace GurshchenkovaValette
 
             try
             {
-                Image img = Image.FromFile(filePath);
+                Image img = Image.FromFile(filePath);                
                 return img;
             }
             catch (Exception)
