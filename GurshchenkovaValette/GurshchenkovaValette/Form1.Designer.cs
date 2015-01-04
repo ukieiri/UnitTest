@@ -81,7 +81,7 @@
             // 
             // btMiamiFilter
             // 
-            this.btMiamiFilter.Location = new System.Drawing.Point(13, 554);
+            this.btMiamiFilter.Location = new System.Drawing.Point(12, 553);
             this.btMiamiFilter.Name = "btMiamiFilter";
             this.btMiamiFilter.Size = new System.Drawing.Size(120, 23);
             this.btMiamiFilter.TabIndex = 2;

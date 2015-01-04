@@ -68,5 +68,17 @@ namespace UnitTest
              result = fa.SaveImage();
              Assert.AreEqual(true, result);
          }
+         [TestMethod]
+         public void FilterButtonsTest()
+         {
+             fa = new Form1();
+             string path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\images\\a.jpg";
+             fa.setOrigin(Image.FromFile(path));
+             Boolean result;
+
+             result = fa.SaveImage();
+             Assert.AreEqual(true, result);
+         }
+
     }
 }

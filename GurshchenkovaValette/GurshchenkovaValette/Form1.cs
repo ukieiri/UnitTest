@@ -101,12 +101,8 @@ namespace GurshchenkovaValette
                 return false;
             }
         }
-        public void PopulateListBox() {
-            //populate the listbox with images from chosen folder
-            var files = fm.getFileNames();
-            lbImages.DataSource = files;
-        }
-        public void LoadPreviewImage(Image image, PictureBox pictureBox) 
+
+        public void LoadPreviewImage(Image image, PictureBox pictureBox)
         {
             pictureBox.Image = image;
             Bitmap temp = new Bitmap(pictureBox.Image);
@@ -122,8 +118,15 @@ namespace GurshchenkovaValette
                 case "pbBlackAndWhite": pictureBox.Image = ImageFilters.BlackWhite(new Bitmap(pictureBox.Image)); break;
                 case "pbSwapFilter": pictureBox.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pictureBox.Image)); break;
                 default: break;
-            }          
+            }
         }
+
+        public void PopulateListBox() {
+            //populate the listbox with images from chosen folder
+            var files = fm.getFileNames();
+            lbImages.DataSource = files;
+        }
+        
 
         public bool ApplyFilter(string filter) {
             try
