@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace GurshchenkovaValette
 {
-   public class ImageFilters
+   public class ImageFilters : IImageFilters
     {     
 
         //apply color filter at your own taste
-        public static Bitmap ApplyFilter(Bitmap bmp, int alpha, int red, int blue, int green)
+        public Bitmap ApplyFilter(Bitmap bmp, int alpha, int red, int blue, int green)
         {
-
             Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
-
 
             for (int i = 0; i < bmp.Width; i++)
             {
@@ -31,7 +29,7 @@ namespace GurshchenkovaValette
         }
 
         //black and white filter
-        public static Bitmap BlackWhite(Bitmap Bmp)
+        public Bitmap BlackWhite(Bitmap Bmp)
         {
             int rgb;
             Color c;
@@ -48,7 +46,7 @@ namespace GurshchenkovaValette
         }
 
         //apply color filter to swap pixel colors
-        public static Bitmap ApplyFilterSwap(Bitmap bmp)
+        public Bitmap ApplyFilterSwap(Bitmap bmp)
         {
 
             Bitmap temp = new Bitmap(bmp.Width, bmp.Height);

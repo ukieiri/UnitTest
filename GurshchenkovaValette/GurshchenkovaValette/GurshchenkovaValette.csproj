@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlsManipulation.cs" />
     <Compile Include="FilenameManipulation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -66,10 +67,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IControlsManipulation.cs" />
     <Compile Include="IFilenameManipulation.cs" />
+    <Compile Include="IImageFilters.cs" />
     <Compile Include="IimageManipulation.cs" />
     <Compile Include="ImageFilters.cs" />
     <Compile Include="ImageManipulation.cs" />
+    <Compile Include="ImageParameters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

@@ -14,9 +14,9 @@ namespace GurshchenkovaValette
     {
         private Image Origin;
         Bitmap map;
-        FilenameManipulation fm;
-        ImageManipulation im;
-        string picturename = string.Empty;
+        public IControlsManipulation _cm;
+        //to have access from other classes
+        public static Form1 _Form1;
 
         public void setOrigin(Image origin) {
             this.Origin = origin;
@@ -24,77 +24,71 @@ namespace GurshchenkovaValette
         public Form1()
         {
             InitializeComponent();
-            fm = new FilenameManipulation();
-            im = new ImageManipulation(fm);
+            _Form1 = this;
+            _cm = new ControlsManipulation();
+            DisableControles();
+            DisableImportButton();
+        }
+        //the another constructor for testing purposes
+        public Form1(IControlsManipulation cm) {
+            InitializeComponent();
+            _Form1 = this;
+            _cm = cm;
             DisableControles();
             DisableImportButton();
         }
 
         private void btLoad_Click(object sender, EventArgs e)
         {
-            GetAPath();
+            if (GetAPath())
+            {
+                lbImages.DataSource = _cm.PopulateListBox();
+                EnableControles();     
+            }
+
         }
+
         //get a path and load the image
         public bool GetAPath()
         {
-            try
+            Image img = null;
+            ImageParameters imageparams = new ImageParameters();
+            OpenFileDialog op = new OpenFileDialog();
+            //set available formats
+            op.Filter = "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
+            DialogResult dr = op.ShowDialog();
+            if (dr == DialogResult.OK)
             {
-                OpenFileDialog op = new OpenFileDialog();
-                op.Filter = "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
-                DialogResult dr = op.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                    string path = op.FileName;
-                    Image img = Image.FromFile(path);
-                    PopulatePictureBoxes(img, path);
-                    //to free image after reloading
-                    img.Dispose();
-                }
-                op.Dispose();
-                return true;
+                string path = op.FileName;
+                _cm.ConfigureFileManager(path);
+                img = Image.FromFile(path);
+                PopulatePictureBoxes(img, path);
+                //to free image 
+                img.Dispose();
             }
-            catch {
-                return false;
-            }
+            op.Dispose();
+            return true;
         }
-        public bool PopulatePictureBoxes(Image img, string path)
+
+        public bool PopulatePictureBoxes(Image img, string filename)
         {
             try{
                 pbMainPicture.Image = img;
                 pbOriginal.Image = img;
-
-                //adjust the image
+                
                 Bitmap temp = new Bitmap(pbMainPicture.Image);
                 pbMainPicture.Image = temp;
                 pbOriginal.Image = temp;
+                //adjust the image
                 pbMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
                 pbOriginal.SizeMode = PictureBoxSizeMode.Zoom;
 
-                //apply the filter and load preview images
-                LoadPreviewImage(img, pbMiamiFilter);
-                LoadPreviewImage(img, pbNightFilter);
-                LoadPreviewImage(img, pbHellFilter);
-                LoadPreviewImage(img, pbZenFilter);
-                LoadPreviewImage(img, pbBlackAndWhite);
-                LoadPreviewImage(img, pbSwapFilter);
+                PopulatePreviews(img);
+
+                tbImageName.Text = filename;
 
                 map = new Bitmap(pbMainPicture.Image);
                 Origin = pbMainPicture.Image;
-                //get the filename
-                string filename = path.Split(new char[] { '\\' }).Last();
-                string extension = path.Split(new char[] { '.' }).Last();
-                picturename = filename.Replace("." + extension, "");
-                tbImageName.Text = picturename;
-
-                //get the foldername to populate the listbox
-                string foldername = path.Replace(filename, "");
-                fm.setFolder(foldername);
-                fm.setFileName(filename);
-                fm.setFileFilter(string.Empty);
-                fm.setFileToken(string.Empty);
-                fm.setFormat(string.Empty);
-                PopulateListBox();
-                EnableControles();
                 return true;
             }
             catch {
@@ -102,112 +96,81 @@ namespace GurshchenkovaValette
             }
         }
 
-        public void LoadPreviewImage(Image image, PictureBox pictureBox)
-        {
-            pictureBox.Image = image;
-            Bitmap temp = new Bitmap(pictureBox.Image);
-            pictureBox.Image = temp;
-            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            switch (pictureBox.Name)
-            {
-                case "pbMiamiFilter":
-                    pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 10, 1); break;
-                case "pbNightFilter": pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 1, 25); break;
-                case "pbHellFilter": pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 1, 10, 15); break;
-                case "pbZenFilter": pictureBox.Image = ImageFilters.ApplyFilter(new Bitmap(pictureBox.Image), 1, 10, 1, 1); break;
-                case "pbBlackAndWhite": pictureBox.Image = ImageFilters.BlackWhite(new Bitmap(pictureBox.Image)); break;
-                case "pbSwapFilter": pictureBox.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pictureBox.Image)); break;
-                default: break;
-            }
+        public void PopulatePreviews(Image img) {
+            //apply the filter and load preview images
+            _cm.LoadPreviewImage(img, pbMiamiFilter);
+            _cm.LoadPreviewImage(img, pbNightFilter);
+            _cm.LoadPreviewImage(img, pbHellFilter);
+            _cm.LoadPreviewImage(img, pbZenFilter);
+            _cm.LoadPreviewImage(img, pbBlackAndWhite);
+            _cm.LoadPreviewImage(img, pbSwapFilter);
         }
 
-        public void PopulateListBox() {
-            //populate the listbox with images from chosen folder
-            var files = fm.getFileNames();
-            lbImages.DataSource = files;
-        }
-        
-
-        public bool ApplyFilter(string filter) {
-            try
-            {
-                pbMainPicture.Image = Origin;
-                switch (filter)
-                {
-                    case "MiamiFilter":
-                        pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 1, 10, 1); break;
-                    case "NightFilter": pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 1, 1, 25); break;
-                    case "HellFilter": pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 1, 10, 15); break;
-                    case "ZenFilter": pbMainPicture.Image = ImageFilters.ApplyFilter(new Bitmap(pbMainPicture.Image), 1, 10, 1, 1); break;
-                    case "BlackAndWhite": pbMainPicture.Image = ImageFilters.BlackWhite(new Bitmap(pbMainPicture.Image)); break;
-                    case "SwapFilter": pbMainPicture.Image = ImageFilters.ApplyFilterSwap(new Bitmap(pbMainPicture.Image)); break;
-                    default: return false;
-                }
-                return true;
-            }
-            catch {
-                return false;
-            }
+        public bool OnFilterButtonClick(string filter) {
+            var result = _cm.ApplyFilter(filter, pbMainPicture, tbImageName, Origin);
+            if (result == true)
+                return result;
+            else return result;
         }
 
         private void btMiamiFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("MiamiFilter");
+            OnFilterButtonClick("pbMiamiFilter");
         }
 
         private void pbMiamiFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("MiamiFilter");
+            OnFilterButtonClick("pbMiamiFilter");
         }
 
         private void btNightFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("NightFilter");
+            OnFilterButtonClick("pbNightFilter");
         }
 
         private void pbNightFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("NightFilter");
+            OnFilterButtonClick("pbNightFilter");
         }
         
         private void btHellFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("HellFilter");
+           OnFilterButtonClick("pbHellFilter");
         }
 
         private void pbHellFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("HellFilter");
+            OnFilterButtonClick("pbHellFilter");
         }
 
         private void btZenFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("ZenFilter");
+            OnFilterButtonClick("pbZenFilter");
         }
 
         private void pbZenFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("ZenFilter");
+            OnFilterButtonClick("pbZenFilter");
         }
 
         private void btBlackAndWhite_Click(object sender, EventArgs e)
         {
-            ApplyFilter("BlackAndWhite");
+            OnFilterButtonClick("pbBlackAndWhite");
         }
 
         private void pbBlackAndWhite_Click(object sender, EventArgs e)
         {
-            ApplyFilter("BlackAndWhite");
+            OnFilterButtonClick("pbBlackAndWhite");
         }
 
         private void btSwapFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("SwapFilter");
+            OnFilterButtonClick("pbSwapFilter");
         }
 
         private void pbSwapFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilter("SwapFilter");
+            OnFilterButtonClick("pbSwapFilter");
         }
         
         private void btOriginal_Click(object sender, EventArgs e)
@@ -222,84 +185,56 @@ namespace GurshchenkovaValette
 
         private void btSave_Click(object sender, EventArgs e)
         {
-            SaveImage();
+            if (SaveImage())
+            {
+                MessageBox.Show("Saved successfully");
+                lbImages.DataSource = _cm.PopulateListBox();
+            }
         }
+
         public bool SaveImage()
         {
-            try
-            {
-                Image img = pbMainPicture.Image;
-                //give a unique name to image
-                var dt = DateTime.Now;
-                var ticks = dt.Ticks;
-                var seconds = ticks / TimeSpan.TicksPerSecond;
-                fm.setFileName(tbImageName.Text + seconds);
-                im.save(img);
-                PopulateListBox();
-                MessageBox.Show("Saved successfully");
-                return true;
-            }
-            catch {
-                return false;
-            }
+            Image img = pbMainPicture.Image;
+            string picturename = tbImageName.Text;
+            var result = _cm.SaveImage(img, picturename);
+            return result;         
         }
-
+  
         private void btImport_Click(object sender, EventArgs e)
         {
-            if (lbImages.SelectedItem != null)
-            {
-                //get the file name from listbox, exclude the extention
-                string fileName = lbImages.SelectedItem.ToString();
-                string extension = fileName.Split(new char[] { '.' }).Last();
-                fileName = fileName.Replace("." + extension, "");
-                fm.setFileName(fileName);
-               // fm.setFormat("." + extension);
-                fm.setFileFilter(string.Empty);
-                fm.setFileToken(string.Empty);
-                fm.setFormat(string.Empty);
-
-                //open selected image and load it into picture  boxes
-                im = new ImageManipulation(fm);
-                var image = im.openImage();                
-                PopulatePictureBoxes(image, fm.getFullPath());
-                image.Dispose();
-            }
+            if (OnImportClick(lbImages.SelectedItem.ToString()))
+            EnableControles();
         }
 
+        public bool OnImportClick(string image)
+        {
+            var result = _cm.ImportImage(image);
+            return result;
+        }
+        
         private void bnDelete_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure you want to delete this picture? It will be deleted permanently from your computer",
-                                     "Delete",
-                                     MessageBoxButtons.YesNo);
-           
-                if (confirmResult == DialogResult.Yes)
+                                       "Delete", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                if (OnDeleteClick())
                 {
-                    DeletePicture();
+                    RestoreTheOriginalForm();
+                    DisableControles();
+                    MessageBox.Show("Deleted successfully");
                 }
-            
-        }
-        public bool DeletePicture() {
-        try{
-            var deleted = im.remove();
-            if (deleted == true)
-            {
-                RestoreTheOriginalForm();
-                MessageBox.Show("Deleted successfully");
-                DisableControles();
-                return true;
+                else {
+                    MessageBox.Show("Deleting is not possible");
+                }
             }
-            else
-            {
-                MessageBox.Show("Deleting is not possible");
-                return false;
-            }
-            
+           
         }
-        catch
-        {
-            return false;
+
+        public bool OnDeleteClick() {
+            return _cm.DeletePicture();
         }
-        }
+       
         public void RestoreTheOriginalForm() {
             pbOriginal.Image = null;
             pbMainPicture.Image = null;
@@ -310,8 +245,12 @@ namespace GurshchenkovaValette
             pbBlackAndWhite.Image = null;
             pbSwapFilter.Image = null;
             tbImageName.Text = null;
-            PopulateListBox();
+            lbImages.DataSource = _cm.PopulateListBox();
         }
+
+        /// <summary>
+        /// Disabling and enabling controles
+        /// </summary>
         public void DisableControles() {
             pbOriginal.Enabled = false;
             btOriginal.Enabled = false;

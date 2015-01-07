@@ -55,7 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest_Form.cs" />
+    <Compile Include="UnitTest_ControlsManipulator.cs" />
     <Compile Include="UnitTest_imageManipulation.cs" />
     <Compile Include="UnitTest_filenameManipulation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +70,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="deleteImage\test.jpg" />
     <Content Include="images\b.jpg" />
     <Content Include="images\c.jpg" />
     <Content Include="images\a.jpg" />
