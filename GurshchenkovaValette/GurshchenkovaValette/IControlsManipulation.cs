@@ -10,6 +10,7 @@ namespace GurshchenkovaValette
 {
     public interface IControlsManipulation
     {
+        //
         bool ConfigureFileManager(string path);
         void LoadPreviewImage(Image image, PictureBox pictureBox);
         bool ApplyFilter(string filter, PictureBox picturebox, TextBox textbox, Image Origin);

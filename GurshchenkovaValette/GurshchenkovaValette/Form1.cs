@@ -70,7 +70,7 @@ namespace GurshchenkovaValette
             return true;
         }
 
-        public bool PopulatePictureBoxes(Image img, string filename)
+        public bool PopulatePictureBoxes(Image img, string path)
         {
             try{
                 pbMainPicture.Image = img;
@@ -85,6 +85,9 @@ namespace GurshchenkovaValette
 
                 PopulatePreviews(img);
 
+                string filename = path.Split(new char[] { '\\' }).Last();
+                string extension = path.Split(new char[] { '.' }).Last();
+                filename = filename.Replace("." + extension, "");
                 tbImageName.Text = filename;
 
                 map = new Bitmap(pbMainPicture.Image);
